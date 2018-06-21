@@ -11,7 +11,7 @@
     <vue-speech v-if="active" lang="en" @onTranscriptionEnd="onEnd" />
   </div>
 
-  <div>
+  <div style="opacity: 0;">
       <select name="lang" id="lang">
           <option value="en-US">English</option>
           <option value="de-DE">German</option>
@@ -24,8 +24,8 @@
 
 
 </form>
-    <button v-if="!active" v-on:click="toggle">Start Speaking</button>
-    <button v-if="active" v-on:click="toggle">Stop Speaking</button>
+    <button class="startbtn" v-if="!active" v-on:click="toggle">Start</button>
+    <button class="stopbtn" v-if="active" v-on:click="toggle">Stop</button>
   </div>
 </template>
 
@@ -54,7 +54,7 @@ export default {
       var newArray = transcription.transcription;
       var newText = '';
       for (var i = 0; i < newArray.length; i++ ) {
-        newText += newArray[i] + '. ';
+        newText += newArray[i].charAt(0).toUpperCase() + newArray[i].slice(1) + '. ';
       }
       innerTinymce.innerHTML = newText;
       doit();
@@ -78,6 +78,27 @@ export default {
 
   #checktext {
     width: 100%;
+    height: 50vh;
     margin: 0 auto;
+  }
+
+  .startbtn {
+    font-size: 24px;
+    color: #fff;
+    padding: 15px 60px;
+    background: #69DD9D;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .stopbtn {
+    font-size: 24px;
+    padding: 15px 60px;
+    color: #fff;
+    background: #ff6666;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
   }
 </style>
