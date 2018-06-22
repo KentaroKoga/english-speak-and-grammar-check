@@ -24,6 +24,9 @@
 
 
 </form>
+
+    <div class="guide" v-if="!active">Please open this page in Chrome(PC) and allow to use a microphone.<br>
+    And then press "Start" button and start speaking in English.</div>
     <button class="startbtn" v-if="!active" v-on:click="toggle">Start</button>
     <button class="stopbtn" v-if="active" v-on:click="toggle">Stop</button>
   </div>
