@@ -1,5 +1,35 @@
 <template>
   <div class="home">
+
+<div class="content">
+    <div class="guide" v-if="!active">
+      <h1>思いつき英語アプリ</h1>
+      <h2>発音と文法の練習が一気にできます。多分ww</h2>
+      <p>このページをChromeで開いてマイクの使用を許可してください。</p>
+      <p>「Start」ボタンを押して英語を話してみてください。</p>
+      <p>文法が間違えていたら自動的にハイライトしてくれます。</p>
+      <p>Please open this page in Chrome(PC) and allow to use a microphone.</p>
+      <p>And then press "Start" button and start speaking in English.</p>
+      <p>Your grammar mistakes will automatically be highlighted.</p>
+    </div>
+
+    <div class="encourage" v-if="active">
+      <h2>難しいけど練習にはなるかと思いマッスルボディー</h2>
+      <p>頑張って早めに正確に喋ってください笑</p>
+      <p>発音と文法の練習です！！</p>
+      <p>また、最初からしたい場合はページをリロードしてください。。。</p>
+      <p>本当にごめんなさい。なおしますので。。ご勘弁を。。。(やり方よくわからないので誰かヘルプミーww)</p>
+      Twitter : <a href="https://twitter.com/kentaro_koga">@kentaro_koga</a>
+      <p>Please speak fast and properly so this stupid app will understand your English.</p>
+      <p>Reload this page to restart.(I'm sorry. I'll work on this issue.lol)</p>
+      <p>Enjoy!</p>
+    </div>
+    <button class="startbtn" v-if="!active" v-on:click="toggle">Start speaking English</button>
+    <button class="stopbtn" v-if="active" v-on:click="reload">Reload this page</button>
+    <h3 v-if="active">↓↓↓下に喋った英語が表示されますよ〜〜〜↓↓↓</h3>
+    <!-- <button class="stopbtn" v-if="active" v-on:click="toggle">Stop</button> -->
+  </div>
+
     <form name="checkform" action="http://community.languagetool.org" method="post">
 
   <p id="checktextpara">
@@ -24,12 +54,7 @@
 
 
 </form>
-
-    <div class="guide" v-if="!active">Please open this page in Chrome(PC) and allow to use a microphone.<br>
-    And then press "Start" button and start speaking in English.</div>
-    <button class="startbtn" v-if="!active" v-on:click="toggle">Start</button>
-    <button class="stopbtn" v-if="active" v-on:click="toggle">Stop</button>
-  </div>
+</div>
 </template>
 
 <script>
@@ -64,6 +89,9 @@ export default {
     },
     toggle: function() {
       this.active = !this.active
+    },
+    reload: function() {
+      location.reload();
     }
   }
 }
@@ -81,7 +109,7 @@ export default {
 
   #checktext {
     width: 100%;
-    height: 50vh;
+    height: 30vh;
     margin: 0 auto;
   }
 
@@ -103,5 +131,9 @@ export default {
     border: none;
     border-radius: 10px;
     cursor: pointer;
+  }
+
+  .guide {
+    margin: 0 0 20px 0;
   }
 </style>
